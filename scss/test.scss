@@ -1,0 +1,34 @@
+%aButton {
+  display: block;
+  text-decoration: none;
+}
+
+
+$baseSize: 14px;
+$baseLineSize: 10px;
+$sizeLevel: 2px;
+$paddingLevel: 1.2;
+
+@import "function";
+
+// Sass Mixin 渾入
+@mixin bButton() {
+  display: block;
+  text-decoration: none;
+}
+
+// Sass 轉出時會個生成一份
+.aaa {
+  @include bButton();
+  @include font(2);
+}
+
+// Sass 轉出時會共用屬性
+.bbb {
+  @extend %aButton;
+  @include font(4);
+}
+.ccc {
+  @extend %aButton;
+  @include font(1);
+}

@@ -1,0 +1,54 @@
+// Sass 變數
+$width: 100%;
+$buttonNumber: 6;
+
+// Sass 宣告繼承樣式
+// Sass % 代表專門被繼承的樣式產出時,且不會有多一個 aButton 類
+// 繼承位置寫在哪就會在出在 哪現
+%aButton {
+  display: block;
+  text-decoration: none;
+}
+// Sass Function 函數
+// $count : 1 $count是傳入變數; 1為預設值
+@function line($count: 1, $baseLineHeight: 10px){
+  // 固定行高可以傳入倍數做增加
+  @return $baseLineHeight * $count;
+}
+
+
+html {
+  margin: 0;
+  padding: 0;
+}
+.tabList {
+  > header {
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      // inline-block 預設會有一個字元所以先改為0px 在改 16px
+      font-size: 0px;
+    }
+    li {
+      display: inline-block;
+      width: $width / $buttonNumber; // 因為適用算地所以不會有支援問題
+      // width: calc(100% / 6); // 較舊瀏覽器不支援
+      > a {
+        // 把 a tag 做成按鈕會需要做 display:block; text-decoration: none;
+        @extend %aButton; // 繼承 aButton
+        width: 100%;
+        height: 20px;
+        // Sass Function 使用
+        line-height: line(2);
+      }
+      font-size: 16px;
+    }
+  }
+  > div {
+    color: red;
+  }
+}
+
+// Sass /**/ 其他人看的到,會轉進css檔
+// Sass // 其他人看不到,且不會轉進css檔
